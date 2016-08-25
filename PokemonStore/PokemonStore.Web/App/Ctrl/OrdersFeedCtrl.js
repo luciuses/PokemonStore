@@ -5,32 +5,29 @@
             $scope.$root.title = 'Pokemon Store | Orders Feed';
             $http.defaults.headers.post["Content-Type"] = "application/json";
 
-            $scope.gridOptions = {
-                enableFiltering: true,
-                treeRowHeaderAlwaysVisible: false,
-                columnDefs: [
-                    { name: 'Date', enableHiding: false },
-                    { name: 'Name', enableHiding: false },
-                    { name: 'Email', enableHiding: false, grouping: { groupPriority: 0 } },
-                    { name: 'Phone', enableHiding: false }
-                ],
-                onRegisterApi: function (gridApi) {
-                    $scope.gridApi = gridApi;
-                },
-                data: []
-            };
+            function updateData(date) {
+                $http.get(ROUTES.API.OPDER + "?date=" + date).success(function (data) {
+                    $scope.totalOrders = data.length;
+                    $scope.ordersPerEmail = _.chain(data).groupBy(function (item) {
+                        return item.Email;
+                    }).map(function (items, email) {
+                            return {
+                                email: email,
+                                ordersCount: items.length,
+                                name: items[items.length-1].Name,
+                                date: items[items.length - 1].Date.toString()
+                            };
+                        }
+                    ).value();
+                });
+            }
 
-            $scope.updateOrdersFeed = function () {
-                $http.get(ROUTES.API.OPDER)
-                    .then(function (pack) {
-                        $scope.gridOptions.data = pack.data;
-                        $scope.gridApi.grouping.groupColumn('email');
-                        Notification.success("Pokemons ordered!");
-                    }, function () {
-                        Notification.error("Error while getting orders of Pokemons!");
-                    });
-            };
+            $scope.dateReport = new Date();
 
-            $scope.updateOrdersFeed();
+            $scope.refreshData = function () {
+                updateData($scope.dateReport.toDateString());
+            }
+
+            $scope.refreshData();
         }
     ]);

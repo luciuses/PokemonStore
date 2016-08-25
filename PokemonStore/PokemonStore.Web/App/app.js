@@ -6,7 +6,8 @@
             UI: {
                 DEFAULT: '/',
                 ORDER: '/order',
-                ORDERS_FEED: '/ordersfeed'
+                ORDERS_FEED: '/ordersfeed',
+                ORDERS_LIST: '/orderslist'
             },
             API: {
                 OPDER: '/api/order'
@@ -30,6 +31,10 @@
                 when(ROUTES.UI.ORDERS_FEED, {
                     templateUrl: '/views/ordersfeed',
                     controller: 'OrdersFeedCtrl'
+                }).
+                when(ROUTES.UI.ORDERS_LIST, {
+                    templateUrl: '/views/orderslist',
+                    controller: 'OrdersListCtrl'
                 }).
                 otherwise({
                     redirectTo: ROUTES.UI.DEFAULT

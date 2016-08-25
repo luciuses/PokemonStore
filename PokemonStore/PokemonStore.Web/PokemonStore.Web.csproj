@@ -147,6 +147,7 @@
   <ItemGroup>
     <Content Include="App\app.js" />
     <Content Include="App\Ctrl\HomeCtrl.js" />
+    <Content Include="App\Ctrl\OrdersListCtrl.js" />
     <Content Include="App\Ctrl\OrdersFeedCtrl.js" />
     <Content Include="App\Ctrl\OrderCtrl.js" />
     <Content Include="Content\angular-ui-notification.min.css" />
@@ -1039,6 +1040,7 @@
     <Content Include="Views\Order.cshtml" />
     <Content Include="Views\Index.cshtml" />
     <Content Include="Views\_PageStart.cshtml" />
+    <Content Include="Views\OrdersList.cshtml" />
     <Content Include="Views\OrdersFeed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

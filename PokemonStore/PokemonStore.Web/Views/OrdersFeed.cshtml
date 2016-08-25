@@ -1,5 +1,21 @@
 ﻿@{
     PageData["title"] = "Pokemon Store | Orders Feed";
 }
-<h2 class="text-center">Order your Pokemon</h2>
-<div ui-grid="gridOptions" ui-grid-grouping ui-grid-selection class="rp-grid rp-block"></div>
+<h2 class="text-center">Orders Feed</h2>
+
+<div class="rp-block">
+    <div class="rp-block">
+        <input id="date-birth" type="date" ng-model="dateReport" ng-change="refreshData()">
+    </div>
+    <img src="~/Content/spinner.gif" ng-show="loadingReport" class="img-responsive center-block" />
+    <table class="table table-bordered table-hover" ng-hide="loadingReport">
+        <tbody>
+            <tr ng-repeat="row in ordersPerEmail">
+                <td>{{row.date}} {{row.name}} ordered Pokemons {{row.ordersCount}} times.</td>
+            </tr>
+            <tr>
+                <td>Total: {{totalOrders}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
