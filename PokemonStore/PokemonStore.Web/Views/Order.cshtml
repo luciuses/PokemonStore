@@ -1,18 +1,20 @@
 ﻿@{
     PageData["title"] = "Pokemon Store | Order";
 }
+<img src="~/Content/spinner.gif" ng-show="submitingInProgress" class="img-responsive center-block" />
 <div class="row">
-    <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="order(name, email, phone)">
+    
+    <form class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" ng-submit="order(name, email, phone)" ng-hide="submitingInProgress">
         <h2 class="text-center">Order your Pokemon</h2>
         <div class="form-box">
             <div class="form-group">
-                <input ng-model="name" type="text" class="form-control" placeholder="Name" required autofocus />
+                <input ng-model="name" type="text" class="form-control" placeholder="Name" required autofocus/>
             </div>
             <div class="form-group">
-                <input ng-model="email" type="text" class="form-control" placeholder="Email" required />
+                <input ng-model="email" type="text" class="form-control" placeholder="Email" required/>
             </div>
             <div class="form-group">
-                <input ng-model="phone" type="text" class="form-control" placeholder="Phone" required />
+                <input ng-model="phone" type="text" class="form-control" placeholder="Phone" required/>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit" ng-disabled="!(name && email && phone)" disabled>Order Pokemon</button>
