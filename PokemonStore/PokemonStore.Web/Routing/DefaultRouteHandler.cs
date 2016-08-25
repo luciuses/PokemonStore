@@ -15,11 +15,6 @@ namespace PokemonStore.Web.Routing
     {
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
-            // Use cases:
-            //     ~/            -> ~/views/index.cshtml
-            //     ~/about       -> ~/views/about.cshtml or ~/views/about/index.cshtml
-            //     ~/views/about -> ~/views/about.cshtml
-            //     ~/xxx         -> ~/views/404.cshtml
             var filePath = requestContext.HttpContext.Request.AppRelativeCurrentExecutionFilePath;
 
             if (filePath == "~/")

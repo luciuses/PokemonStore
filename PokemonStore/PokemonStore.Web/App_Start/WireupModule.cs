@@ -15,7 +15,8 @@ namespace PokemonStore.Web
             containerBuilder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             containerBuilder.RegisterType<ApplicationContext>().As<DbContext>().AsSelf().InstancePerRequest();
-
+            containerBuilder.RegisterType<EmailSettingsProvider>().AsImplementedInterfaces().SingleInstance();
+            containerBuilder.RegisterType<SendMailProvider>().AsImplementedInterfaces().SingleInstance();
             containerBuilder.RegisterGeneric(typeof(SqlRepository<>)).As(typeof(IRepository<>)).InstancePerRequest();
         }
     }
